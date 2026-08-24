@@ -2,8 +2,11 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
 
+#ifndef NUM_DECKS
 #define NUM_DECKS 6
+#endif
 
 typedef enum {
   ACE = 1,
@@ -26,7 +29,7 @@ typedef struct Hand {
 
 Hand init_hand(Card *c1, Card *c2) {
   uint8_t init_total = 0;
-  bool  init_soft = true;
+  bool init_soft = true;
   if (c1->rank == ACE && c2->rank == ACE) {
     init_total = 12;
   } else if (c1->rank == ACE || c2->rank == ACE) {
