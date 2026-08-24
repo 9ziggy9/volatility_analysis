@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -pedantic -Wconversion
+CFLAGS=-Wall -pedantic
 EXE=main
 SRC=main.c
 
