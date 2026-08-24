@@ -1,3 +1,14 @@
+#ifndef CARDS_H
+#define CARDS_H
+#include <stdint.h>
+#include <stdlib.h>
+#include <time.h>
+#include <stdbool.h>
+
+#ifndef NUM_DECKS
+  #define NUM_DECKS 6
+#endif
+
 typedef enum {
   ACE = 1,
   TWO,   THREE, FOUR, FIVE, SIX,   SEVEN,
@@ -7,9 +18,26 @@ typedef enum {
 #define RANK_TO_POINTS(RANK) ((uint8_t)(RANK) < 10 ? (uint8_t)(RANK) : 10)
 
 typedef enum { HEARTS, CLUBS, DIAMONDS, SPADES } CardSuit;
-
 typedef struct Card { CardRank rank; CardSuit suit; } Card;
 typedef struct Shoe { Card cards[NUM_DECKS * 52]; uint16_t cards_out; } Shoe;
+
+typedef struct Hand {
+  Card  *cards[12];
+  uint8_t hits;
+  uint8_t total;
+  uint8_t soft_aces;
+} Hand;
+
+Hand init_hand(Card *c1, Card *c2);
+Shoe init_ordered_shoe(void);
+void shuffle_shoe(Shoe *shoe);
+Card *draw_card(Shoe *shoe);
+bool hit_hand(Hand *h, Card *c);
+bool dealer_should_hit(Hand *h);
+bool dealer_hit_proc(Shoe *s, Hand *h);
+
+
+#ifdef CARDS_IMPLEMENTATION
 
 /* BEGIN HAND DS
   This is a bit of a semantical rant, but what do we really mean by a hand which
@@ -35,12 +63,6 @@ typedef struct Shoe { Card cards[NUM_DECKS * 52]; uint16_t cards_out; } Shoe;
   on soft ace, as two aces acting as an 11 => 22 (which busts). I however want
   to leave the door open to more general blackjack games, i.e. ones where a
   total greater than 21 may have meaning. */
-typedef struct Hand {
-  Card  *cards[12];
-  uint8_t hits;
-  uint8_t total;
-  uint8_t soft_aces;
-} Hand;
 
 Hand init_hand(Card *c1, Card *c2) {
   // to begin, we treat all aces as soft
@@ -112,3 +134,6 @@ bool dealer_hit_proc(Shoe *s, Hand *h) {
   while(dealer_should_hit(h)) hit_hand(h, draw_card(s));
   return h->total <= 21;
 }
+
+#endif
+#endif

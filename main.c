@@ -1,13 +1,7 @@
 #include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <time.h>
-#include <stdbool.h>
 
-
-#ifndef NUM_DECKS
-  #define NUM_DECKS 6
-#endif
+#define CARDS_IMPLEMENTATION
+#include "cards.h"
 
 // forward declared print stuff
 void print_card(Card *);
