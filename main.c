@@ -4,7 +4,16 @@
 #define LOGS_IMPLEMENTATION
 #include "logs.h"
 
-int main(void) {
+// This is how we choose modes
+#ifndef ENTRY_POINT
+  #define ENTRY_POINT entry_dealer_demo
+#endif
+
+int entry_random(void) {
+  return 0;
+}
+
+int entry_dealer_demo(void) {
   srand((unsigned int)time(NULL));
   Shoe shoe = init_ordered_shoe();
   shuffle_shoe(&shoe);
@@ -32,4 +41,8 @@ int main(void) {
   printf("\nDealer total: %u", dealer_hand.total);
   printf("\n");
   return 0;
+}
+
+int main(void) {
+  return ENTRY_POINT(); // BRO WTF?!?!?!?!?!?
 }
