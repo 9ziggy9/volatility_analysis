@@ -10,6 +10,7 @@
 #endif
 
 int entry_random(void) {
+  printf("Hello, from random entry point.\n");
   return 0;
 }
 
@@ -44,5 +45,5 @@ int entry_dealer_demo(void) {
 }
 
 int main(void) {
-  return ENTRY_POINT(); // BRO WTF?!?!?!?!?!?
+  return ENTRY_POINT();
 }

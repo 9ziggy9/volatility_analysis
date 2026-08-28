@@ -8,7 +8,6 @@ void print_card(Card *);
 void print_shoe(Shoe *);
 
 #ifdef LOGS_IMPLEMENTATION
-// print stuff implementations, make header only lib later
 const char *rank_str[] = {
   [ACE]  = "A", [TWO] = "2", [THREE] = "3", [FOUR]  = "4",
   [FIVE] = "5", [SIX] = "6", [SEVEN] = "7", [EIGHT] = "8",

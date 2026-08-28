@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-Wall -pedantic
-EXE=main
+EXE=run
 SRC=main.c
 
 -include config.mk
@@ -27,7 +27,7 @@ config:
 	mode=$$(dialog --backtitle "bj build config" --stdout				\
 		--radiolist "Entry point:" 15 50 4												\
 		entry_dealer_demo   "Dealer demo"          on							\
-		entry_random        "RNG TESTING"          off)						\
+		entry_random        "RNG TESTING"          off);					\
 	clear;																											\
 	if [ -n "$$decks" ]; then																		\
 		echo "NUM_DECKS=$$decks" > config.mk;											\
