@@ -10,7 +10,7 @@ CFLAGS += -DNUM_DECKS=$(NUM_DECKS)
 endif
 
 ifdef ENTRY_POINT
-CFLAGS += -ENTRY_POINT=$(ENTRY_POINT)
+CFLAGS += -DENTRY_POINT=$(ENTRY_POINT)
 endif
 
 all: $(SRC)
@@ -32,9 +32,9 @@ config:
 	if [ -n "$$decks" ]; then																		\
 		echo "NUM_DECKS=$$decks" > config.mk;											\
 		echo "NUM_DECKS set to $$decks";													\
-	fi                                                          
+	fi;                                                         \
 	if [ -n "$$mode" ]; then																		\
-		echo "ENTRY_POINT=$$mode" > config.mk;									  \
+		echo "ENTRY_POINT=$$mode" >> config.mk;									  \
 		echo "ENTRY_POINT set to $$mode";													\
 	fi
 
