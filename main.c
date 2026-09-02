@@ -4,12 +4,9 @@
 #define LOGS_IMPLEMENTATION
 #include "logs.h"
 
-// This is how we choose modes
 #ifndef ENTRY_POINT
   #define ENTRY_POINT entry_dealer_demo
 #endif
-
-
 
 int entry_ui(void) {
   printf("Hello from UI\n");

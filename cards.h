@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
+#include <assert.h>
 
 #ifndef NUM_DECKS
   #define NUM_DECKS 6
@@ -110,7 +111,11 @@ void shuffle_shoe(Shoe *shoe) {
   shoe->cards_out = 0;
 }
 
-Card *draw_card(Shoe *shoe) { return &shoe->cards[shoe->cards_out++]; }
+Card *draw_card(Shoe *shoe) {
+  assert((shoe->cards_out < NUM_DECKS * 52) && "too many cards out");
+  return &shoe->cards[shoe->cards_out++];
+}
+
 bool hit_hand(Hand *h, Card *c) { // FALSE means busted
   h->cards[((h->hits++) + 2)] = c;
   h->total += RANK_TO_POINTS(c->rank);
