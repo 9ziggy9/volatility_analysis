@@ -9,8 +9,10 @@
   #define ENTRY_POINT entry_dealer_demo
 #endif
 
-int entry_random(void) {
-  printf("Hello, from random entry point.\n");
+
+
+int entry_ui(void) {
+  printf("Hello from UI\n");
   return 0;
 }
 
